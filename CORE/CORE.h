@@ -14,16 +14,6 @@
 #include <cmath>
 #include <vector>
 #include <ostream>
-// 此类是从 dll 导出的
-class CORE_API CCORE {
-public:
-	CCORE(void);
-	// TODO: 在此处添加方法。
-};
-
-extern CORE_API int nCORE;
-
-CORE_API int fnCORE(void);
 
 using std::pair;
 using std::vector;

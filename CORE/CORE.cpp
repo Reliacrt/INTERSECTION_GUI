@@ -5,21 +5,6 @@
 #include <iostream>
 using namespace std;
 
-// 这是导出变量的一个示例
-CORE_API int nCORE=0;
-
-// 这是导出函数的一个示例。
-CORE_API int fnCORE(void)
-{
-    return 0;
-}
-
-// 这是已导出类的构造函数。
-CCORE::CCORE()
-{
-    return;
-}
-
 #define SQUA(x) (x)*(x)
 #define SSUM(x, y) SQUA(x)+SQUA(y)
 #define ERRORP Point(-100000000.0, -100000000.0)
