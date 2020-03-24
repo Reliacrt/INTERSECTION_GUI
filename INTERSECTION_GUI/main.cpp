@@ -23,11 +23,12 @@ static ShapeList shape_list;
 static set<Point> points;
 static double mx = 0., my = 0.;
 
-FILE* input;
-FILE* output;
+FILE* input = NULL;
+FILE* output = NULL;
 
 inline size_t count(vector<Shape*>& shapes)
 {
+	points.clear();
 	auto n = shapes.size();
 	// n ^ 2 ±éÀú
 	for (size_t i = 0; i < n - 1; i++)
@@ -73,23 +74,25 @@ void arg_parse(int argc, char* argv[])
 		arg_parse_one_item(argv[0], argv[1]);
 		argv += 2;
 	}
-	int n;
-	char line[50] = "\0";
-	gets_s(line);
-	sscanf_s(line, "%d", &n);
-	for (int i = 0; i < n; i++)
+	if (input != NULL)
 	{
+		int n;
+		char line[50] = "\0";
 		gets_s(line);
-		try
+		sscanf_s(line, "%d", &n);
+		for (int i = 0; i < n; i++)
 		{
-			shape_list.add_shape(line);
-		}
-		catch (const char* msg)
-		{
-			cerr << msg << endl;
+			gets_s(line);
+			try
+			{
+				shape_list.add_shape(line);
+			}
+			catch (const char* msg)
+			{
+				cerr << msg << endl;
+			}
 		}
 	}
-	printf("%d\n", count(shape_list.shapelist));
 }
 
 void flush_shape(void)
@@ -210,14 +213,16 @@ int text_cb(Ihandle* self)
 
 int bt_insert_cb(Ihandle* self)
 {
-	if (text_str == NULL) return IUP_DEFAULT;
-	try
+	if (text_str != NULL)
 	{
-		shape_list.add_shape(text_str);
-	}
-	catch (const char* msg)
-	{
-		cerr << msg << endl;
+		try
+		{
+			shape_list.add_shape(text_str);
+		}
+		catch (const char* msg)
+		{
+			cerr << msg << endl;
+		}
 	}
 	Ihandle* canvas = IupGetDialogChild(self, "CANVAS");
 	update_canvas(canvas);
@@ -226,14 +231,16 @@ int bt_insert_cb(Ihandle* self)
 
 int bt_delete_cb(Ihandle* self)
 {
-	if (text_str == NULL) return IUP_DEFAULT;
-	try
+	if (text_str != NULL)
 	{
-		shape_list.delete_shape(text_str);
-	}
-	catch (const char* msg)
-	{
-		cerr << msg << endl;
+		try
+		{
+			shape_list.delete_shape(text_str);
+		}
+		catch (const char* msg)
+		{
+			cerr << msg << endl;
+		}
 	}
 	Ihandle* canvas = IupGetDialogChild(self, "CANVAS");
 	update_canvas(canvas);
@@ -275,10 +282,8 @@ int main(int argc, char** argv)
 
 	/* Registers callbacks */
 	IupSetCallback(text, "VALUECHANGED_CB", (Icallback)text_cb);
-	IupSetCallback(canvas, "ACTION", (Icallback)update_canvas);
 	IupSetCallback(button_insert, "ACTION", (Icallback)bt_insert_cb);
 	IupSetCallback(button_delete, "ACTION", (Icallback)bt_delete_cb);
-
 
 	IupShowXY(dlg, IUP_CENTER, IUP_CENTER);
 
