@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="iup.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iup_class_cbs.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iup_config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iup_export.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iup_mglplot.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iup_plot.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iup_plus.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iup_scintilla.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iup_varg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupcbs.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupcontrols.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupdef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupdraw.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupdraw_cd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupfiledlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupgl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupglcontrols.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupim.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupkey.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iuplua.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iuplua_mglplot.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iuplua_plot.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iuplua_scintilla.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupluacontrols.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupluafiledlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupluagl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupluaglcontrols.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupluaim.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupluaole.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupluascripterdlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupluatuio.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupluaweb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupole.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iuptuio.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iupweb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cd_canvas.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cd_old.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cd_plus.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cd_private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdcairo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdcgm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdclipbd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cddbuf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cddebug.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cddgn.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cddirect2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cddxf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdemf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdgdiplus.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdgl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdim.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdimage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdirgb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdiup.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdlua.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdlua3_private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdlua5_private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdluagl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdluaim.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdluaiup.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdluapdf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdmf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdmf_private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdnative.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdpdf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdpicture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdpptx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdprint.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdps.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdsvg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdwmf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="wd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="wd_old.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

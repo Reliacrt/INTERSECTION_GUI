@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{1416DBC2-867F-490C-9078-9D37BB7E0FD9}</ProjectGuid>
+    <RootNamespace>INTERSECTIONGUI</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/Zc:strictStrings- %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>./lib/freetype6.lib;./lib/ftgl.lib;./lib/iup.lib;./lib/iup_mglplot.lib;./lib/iup_plot.lib;./lib/iup_scintilla.lib;./lib/iupcd.lib;./lib/iupcontrols.lib;./lib/iupfiledlg.lib;./lib/iupgl.lib;./lib/iupglcontrols.lib;./lib/iupim.lib;./lib/iupimglib.lib;./lib/iupole.lib;./lib/iupstub.lib;./lib/iuptuio.lib;./lib/iupweb.lib;./lib/zlib1.lib;../x64/Debug/CORE.lib;./lib/cd.lib;./lib/cdcontextplus.lib;./lib/cddirect2d.lib;./lib/cdgl.lib;./lib/cdim.lib;./lib/cdpdf.lib;./lib/pdflib.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>./lib/freetype6.lib;./lib/ftgl.lib;./lib/iup.lib;./lib/iup_mglplot.lib;./lib/iup_plot.lib;./lib/iup_scintilla.lib;./lib/iupcd.lib;./lib/iupcontrols.lib;./lib/iupfiledlg.lib;./lib/iupgl.lib;./lib/iupglcontrols.lib;./lib/iupim.lib;./lib/iupimglib.lib;./lib/iupole.lib;./lib/iupstub.lib;./lib/iuptuio.lib;./lib/iupweb.lib;./lib/zlib1.lib;../x64/Release/CORE.lib;./lib/cd.lib;./lib/cdcontextplus.lib;./lib/cddirect2d.lib;./lib/cdgl.lib;./lib/cdim.lib;./lib/cdpdf.lib;./lib/pdflib.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="cd.h" />
+    <ClInclude Include="cdcairo.h" />
+    <ClInclude Include="cdcgm.h" />
+    <ClInclude Include="cdclipbd.h" />
+    <ClInclude Include="cddbuf.h" />
+    <ClInclude Include="cddebug.h" />
+    <ClInclude Include="cddgn.h" />
+    <ClInclude Include="cddirect2d.h" />
+    <ClInclude Include="cddxf.h" />
+    <ClInclude Include="cdemf.h" />
+    <ClInclude Include="cdgdiplus.h" />
+    <ClInclude Include="cdgl.h" />
+    <ClInclude Include="cdim.h" />
+    <ClInclude Include="cdimage.h" />
+    <ClInclude Include="cdirgb.h" />
+    <ClInclude Include="cdiup.h" />
+    <ClInclude Include="cdlua.h" />
+    <ClInclude Include="cdlua3_private.h" />
+    <ClInclude Include="cdlua5_private.h" />
+    <ClInclude Include="cdluagl.h" />
+    <ClInclude Include="cdluaim.h" />
+    <ClInclude Include="cdluaiup.h" />
+    <ClInclude Include="cdluapdf.h" />
+    <ClInclude Include="cdmf.h" />
+    <ClInclude Include="cdmf_private.h" />
+    <ClInclude Include="cdnative.h" />
+    <ClInclude Include="cdpdf.h" />
+    <ClInclude Include="cdpicture.h" />
+    <ClInclude Include="cdpptx.h" />
+    <ClInclude Include="cdprint.h" />
+    <ClInclude Include="cdps.h" />
+    <ClInclude Include="cdsvg.h" />
+    <ClInclude Include="cdwmf.h" />
+    <ClInclude Include="cd_canvas.hpp" />
+    <ClInclude Include="cd_old.h" />
+    <ClInclude Include="cd_plus.h" />
+    <ClInclude Include="cd_private.h" />
+    <ClInclude Include="iup.h" />
+    <ClInclude Include="iupcbs.h" />
+    <ClInclude Include="iupcontrols.h" />
+    <ClInclude Include="iupdef.h" />
+    <ClInclude Include="iupdraw.h" />
+    <ClInclude Include="iupdraw_cd.h" />
+    <ClInclude Include="iupfiledlg.h" />
+    <ClInclude Include="iupgl.h" />
+    <ClInclude Include="iupglcontrols.h" />
+    <ClInclude Include="iupim.h" />
+    <ClInclude Include="iupkey.h" />
+    <ClInclude Include="iuplua.h" />
+    <ClInclude Include="iupluacontrols.h" />
+    <ClInclude Include="iupluafiledlg.h" />
+    <ClInclude Include="iupluagl.h" />
+    <ClInclude Include="iupluaglcontrols.h" />
+    <ClInclude Include="iupluaim.h" />
+    <ClInclude Include="iupluaole.h" />
+    <ClInclude Include="iupluascripterdlg.h" />
+    <ClInclude Include="iupluatuio.h" />
+    <ClInclude Include="iupluaweb.h" />
+    <ClInclude Include="iuplua_mglplot.h" />
+    <ClInclude Include="iuplua_plot.h" />
+    <ClInclude Include="iuplua_scintilla.h" />
+    <ClInclude Include="iupole.h" />
+    <ClInclude Include="iuptuio.h" />
+    <ClInclude Include="iupweb.h" />
+    <ClInclude Include="iup_class_cbs.hpp" />
+    <ClInclude Include="iup_config.h" />
+    <ClInclude Include="iup_export.h" />
+    <ClInclude Include="iup_mglplot.h" />
+    <ClInclude Include="iup_plot.h" />
+    <ClInclude Include="iup_plus.h" />
+    <ClInclude Include="iup_scintilla.h" />
+    <ClInclude Include="iup_varg.h" />
+    <ClInclude Include="wd.h" />
+    <ClInclude Include="wd_old.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CORE\CORE.vcxproj">
+      <Project>{a8b23ab8-91ac-4c90-bc66-8a12a9b27567}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
