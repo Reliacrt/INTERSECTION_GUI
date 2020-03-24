@@ -127,8 +127,17 @@ struct CORE_API Radial : public Shape {
 	RetPoints intersect(Shape* ano);
 };
 
+struct CORE_API ShapeList {
+	vector<Shape*> shapelist;
+	void add_shape(char* line);
+	void delete_shape(char* line);
+	vector<Shape*> get_shapelist();
+};
 
 /****************from Pan******************/
+inline char* decide_char(char* s, char* c);
+inline char* decide_int(char* s);
+inline void decide_more(char* s);
 inline bool on_radial(Point p, Shape* s);
 inline bool on_segment(Point p, Shape* s);
 /****************from Zhang******************/

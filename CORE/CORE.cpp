@@ -276,8 +276,43 @@ inline RetPoints radial_constraint(Shape* s, RetPoints orig)
 RetPoints Segment::intersect(Shape* ano) {
 	RetPoints orig = RetPoints{ 0, ERRORP, ERRORP};
 	if (ano->type == ShapeType::LINE) orig = line_inter_line(this, ano);
-	if (ano->type == ShapeType::SEGMENT) orig = segment_constraint(ano, line_inter_line(this, ano));
-	if (ano->type == ShapeType::RADIAL) orig = radial_constraint(ano, line_inter_line(this, ano));
+	if (ano->type == ShapeType::SEGMENT) {
+		orig = line_inter_line(this, ano);
+		if (orig.count == 0) {
+			Segment* s = (Segment*)ano;
+			if ((this->x1 == s->x1) && (this->y1 == s->y1)) {
+				orig.count = 1;
+				Point p = *(new Point(s->x1, s->y1));
+				orig.p1 = p;
+			}
+			else if ((this->x1 == s->x2) && (this->y1 == s->y2)) {
+				orig.count = 1;
+				Point p = *(new Point(s->x2, s->y2));
+				orig.p1 = p;
+			}
+			else if ((this->x2 == s->x1) && (this->y2 == s->y1)) {
+				orig.count = 1;
+				Point p = *(new Point(s->x1, s->y1));
+				orig.p1 = p;
+			}
+			else if ((this->x2 == s->x2) && (this->y2 == s->y2)) {
+				orig.count = 1;
+				Point p = *(new Point(s->x2, s->y2));
+				orig.p1 = p;
+			}
+		}
+		orig = segment_constraint(ano, orig);
+	}
+	if (ano->type == ShapeType::RADIAL) {
+		orig = line_inter_line(this, ano);
+		if (orig.count == 0) {
+			Radial* r = (Radial*)ano;
+			orig.count = 1;
+			Point p = *(new Point(r->x1, r->y1));
+			orig.p1 = p;
+		}
+		orig = radial_constraint(ano, orig);
+	}
 	if (ano->type == ShapeType::CIRCLE) orig = line_inter_circle(this, ano);
 	return segment_constraint(this, orig);
 }
@@ -285,9 +320,322 @@ RetPoints Segment::intersect(Shape* ano) {
 RetPoints Radial::intersect(Shape* ano) {
 	RetPoints orig = RetPoints{ 0, ERRORP, ERRORP };
 	if (ano->type == ShapeType::LINE) orig = line_inter_line(this, ano);
-	if (ano->type == ShapeType::SEGMENT) orig = segment_constraint(ano, line_inter_line(this, ano));
-	if (ano->type == ShapeType::RADIAL) orig = radial_constraint(ano, line_inter_line(this, ano));
+	if (ano->type == ShapeType::SEGMENT) {
+		orig = line_inter_line(this, ano);
+		if (orig.count == 0) {
+			Radial* r = (Radial*)this;
+			orig.count = 1;
+			Point p = *(new Point(r->x1, r->y1));
+			orig.p1 = p;
+		}
+		orig = segment_constraint(ano, orig);
+	}
+	if (ano->type == ShapeType::RADIAL) {
+		orig = line_inter_line(this, ano);
+		if (orig.count == 0) {
+			Radial* r = (Radial*)this;
+			orig.count = 1;
+			Point p = *(new Point(r->x1, r->y1));
+			orig.p1 = p;
+		}
+		orig = radial_constraint(ano, orig);
+	}
 	if (ano->type == ShapeType::CIRCLE) orig = line_inter_circle(this, ano);
 	return radial_constraint(this, orig);
 }
 
+inline char* decide_char(char* s, char* c) {
+	for (; *s == ' '; s++);
+	if(*s=='\0') {
+		throw("1:Input char does not conform to four formats");
+	}
+	if ((*s != 'L') && (*s != 'C') && (*s != 'S') && (*s != 'R')) {
+		throw("1:Input char does not conform to four formats");
+	}
+	else {
+		s++;
+		*c = *(s - 1);
+		return s;
+	}
+	s++;
+	if (*s != ' ') {
+		throw("1:Input char does not conform to four formats");
+	}
+}
+
+inline char* decide_int(char* s) {
+	for (; *s == ' '; s++);
+	if (*s == '\0') {
+		throw("2:Fewer inputs");
+	}
+	if (*s == '-') s++;
+	if (*s == '0') {
+		if ((*(s + 1) != ' ') && (*(s + 1) != '\0')) {
+			throw("3:Leading 0");
+		}
+	}
+	while (true) {
+		if (*s == ' ' || *s == '\0') {
+			break;
+		}
+		else if ((*s > '9') || (*s < '0')) {
+			throw("4:The input number does not meet the requirements");
+			s++;
+			break;
+		}
+		else s++;
+	}
+	return s;
+}
+
+inline void decide_more(char* s) {
+	for (; *s == ' '; s++);
+	if (*s != '\0') {
+		throw("5:More inputs");
+		return;
+	}
+}
+
+void ShapeList::add_shape(char* line) {
+	char* decide = line;
+	Shape* shape;
+	char c1;
+	int a1, a2, a3, a4;
+	decide = decide_char(decide, &c1);
+	decide = decide_int(decide);
+	decide = decide_int(decide);
+	decide = decide_int(decide);
+	if (c1 != 'C') {
+		decide = decide_int(decide);
+	}
+	decide_more(decide);
+	if (c1 == 'C') {
+		sscanf_s(line, "%c %d %d %d", &c1, 1, &a1, &a2, &a3);
+	}
+	else {
+		sscanf_s(line, "%c %d %d %d %d", &c1, 1, &a1, &a2, &a3, &a4);
+	}
+	
+	if ((a1 >= 100000) || (a1 <= -100000) || (a2 >= 100000) || (a2 <= -100000) || (a3 >= 100000) || (a3 <= -100000)) {
+		throw( "4:The input number does not meet the requirements");
+	}
+	if (c1 != 'C') {
+		if ((a4 >= 100000) || (a4 <= -100000)) {
+			throw("4:The input number does not meet the requirements");
+		}
+	}
+	if (c1 == 'L')
+	{
+		if ((a1 == a3) && (a2 == a4)) {
+			throw("6:Two point superposition");
+		}
+		shape = new Line(a1, a2, a3, a4);
+	}
+	else if (c1 == 'C')
+	{
+		if (a3 == 0) {
+			throw("7:Circle radius is 0");
+		}
+		shape = new Circle(a1, a2, a3);
+	}
+	else if (c1 == 'S')
+	{
+		if ((a1 == a3) && (a2 == a4)) {
+			throw("6:Two point superposition");
+		}
+		shape = new Segment(a1, a2, a3, a4);
+	}
+	else if (c1 == 'R')
+	{
+		if ((a1 == a3) && (a2 == a4)) {
+			throw("6:Two point superposition");
+		}
+		shape = new Radial(a1, a2, a3, a4);
+	}
+	else {
+		shape = new Radial(a1, a2, a3, a4);
+	}
+	if (c1 == 'C') {
+		for (Shape* sh : this->shapelist) {
+			if (sh->type == ShapeType::CIRCLE) {
+				Circle* c = (Circle*)sh;
+				if ((a1 == c->x_coeff) && (a2 == c->y_coeff) && (a3 == c->r_coeff)) {
+					throw("8:Infinite intersections");
+				}
+			}
+		}
+	}
+	else {
+		int A, B, C;
+		Point p1 = *(new Point(a1, a2));
+		Point p2 = *(new Point(a3, a4));
+		for (Shape* sh : this->shapelist) {
+			if (sh->type == ShapeType::LINE) {
+				Line* l = (Line*)sh;
+				A = l->x_coeff;
+				B = l->y_coeff;
+				C = l->c_coeff;
+			}
+			else if (sh->type == ShapeType::SEGMENT) {
+				Segment* s = (Segment*)sh;
+				Point p3 = *(new Point(s->x1, s->y1));
+				Point p4 = *(new Point(s->x2, s->y2));
+				bool flag1, flag2, flag3, flag4;
+				if (c1 == 'S') {
+					flag1 = on_segment(p1, s);
+					flag2 = on_segment(p2, s);
+					flag3 = on_segment(p3, shape);
+					flag4 = on_segment(p4, shape);
+					if ((flag1 == false) && (flag2 == false) && (flag3 == false) && (flag4 == false)) {
+						continue;
+					}
+					else {
+						if ((flag1 == true) && (flag2 == false)) {
+							if ((flag3 == true) && (flag4 == false)) {
+								if (p1 == p3) continue;
+							}
+							else if((flag4 == true) && (flag3 == false)) {
+								if (p1 == p4) continue;
+							}
+						}
+						if ((flag2 == true) && (flag1 == false)) {
+							if ((flag3 == true) && (flag4 == false)) {
+								if (p2 == p3) continue;
+							}
+							else if ((flag4 == true) && (flag3 == false)) {
+								if (p2 == p4) continue;
+							}
+						}
+					}
+				}
+				else if (c1 == 'R') {
+					flag1 = on_radial(p3, shape);
+					flag2 = on_radial(p4, shape);
+					if ((flag1 == false) && (flag2 == false)) {
+						continue;
+					}
+					else if ((flag1 == true) && (flag2 == true));
+					else {
+						if (flag1 == true) {
+							if ((p3 == p1)) continue;
+						}
+						else {
+							if ((p4 == p1)) continue;
+						}
+					}
+				}
+				A = s->x_coeff;
+				B = s->y_coeff;
+				C = s->c_coeff;
+			}
+			else if (sh->type == ShapeType::RADIAL) {
+				Radial* r = (Radial*)sh;
+				Point p3 = *(new Point(r->x1, r->y1));
+				bool flag1, flag2;
+				if (c1 == 'S') {
+					flag1 = on_radial(p1, r);
+					flag2 = on_radial(p2, r);
+					if ((flag1 == false) && (flag2 == false)) {
+						continue;
+					}
+					else if ((flag1 == true) && (flag2 == true));
+					else {
+						if (flag1 == true) {
+							if ((p3 == p1)) continue;
+						}
+						else {
+							if ((p3 == p2)) continue;
+						}
+					}
+				}
+				else if (c1 == 'R') {
+					if (p1 == p3) {
+						if (on_radial(p2, r) == false) {
+							continue;
+						}
+					}
+				}
+				A = r->x_coeff;
+				B = r->y_coeff;
+				C = r->c_coeff;
+			}
+			else {
+				continue;
+			}
+			if ((A * a1 + B * a2 + C == 0) && (A * a3 + B * a4 + C == 0)) {
+				throw("8:Infinite intersections");
+			}
+		}
+	}
+	this->shapelist.push_back(shape);
+}
+
+void ShapeList::delete_shape(char* line) {
+	vector<Shape*>::iterator sh;
+	char c1;
+	int a1, a2, a3, a4;
+	bool flag;
+	sscanf_s(line, "%c %d %d %d %d", &c1, 1, &a1, &a2, &a3, &a4);
+	if (c1 == 'C') {
+		for (sh = this->shapelist.begin(); sh != this->shapelist.end(); sh++) {
+			if ((*sh)->type == ShapeType::CIRCLE) {
+				Circle* c = (Circle*)(*sh);
+				if ((a1 == c->x_coeff) && (a2 == c->y_coeff) && (a3 == c->r_coeff)) {
+					break;
+				}
+			}
+		}
+	}
+	else if (c1 == 'L') {
+		for (sh = this->shapelist.begin(); sh != this->shapelist.end(); sh++) {
+			if ((*sh)->type == ShapeType::LINE) {
+				Line* c = (Line*)(*sh);
+				int A, B, C;
+				A = c->x_coeff;
+				B = c->y_coeff;
+				C = c->c_coeff;
+				if ((A * a1 + B * a2 + C == 0) && (A * a3 + B * a4 + C == 0)) {
+					break;
+				}
+			}
+		}
+	}
+	else if (c1 == 'S') {
+		for (sh = this->shapelist.begin(); sh != this->shapelist.end(); sh++) {
+			if ((*sh)->type == ShapeType::SEGMENT) {
+				Segment* c = (Segment*)(*sh);
+				int A, B, C;
+				A = c->x_coeff;
+				B = c->y_coeff;
+				C = c->c_coeff;
+				if ((A * a1 + B * a2 + C == 0) && (A * a3 + B * a4 + C == 0)) {
+					break;
+				}
+			}
+		}
+	}
+	else if (c1 == 'R') {
+		for (sh = this->shapelist.begin(); sh != this->shapelist.end(); sh++) {
+			if ((*sh)->type == ShapeType::RADIAL) {
+				Radial* c = (Radial*)(*sh);
+				int A, B, C;
+				A = c->x_coeff;
+				B = c->y_coeff;
+				C = c->c_coeff;
+				if ((A * a1 + B * a2 + C == 0) && (A * a3 + B * a4 + C == 0)) {
+					break;
+				}
+			}
+		}
+	}
+	if (sh == this->shapelist.end()) {
+		throw("9:Deleted element is empty");
+	}
+	else {
+		this->shapelist.erase(sh);
+	}
+}
+
+vector<Shape*> ShapeList::get_shapelist() {
+	return this->shapelist;
+}

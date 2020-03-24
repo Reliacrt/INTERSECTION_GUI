@@ -88,10 +88,11 @@ void performance(void)
 int main(int argc, char* argv[])
 {
 	vector<Shape*> shapes;
+	ShapeList* shapelist = new ShapeList();
 	int n;
-	int a1, a2, a3, a4;
+	int a;
 	char line[50] = "\0";
-	new Circle(1, 1, 2);
+	new Circle(1,1,2);
 	arg_parse(argc, argv);
 	//performance();
 	gets_s(line);
@@ -99,25 +100,23 @@ int main(int argc, char* argv[])
 	for (int i = 0; i < n; i++)
 	{
 		gets_s(line);
-		char c1;
-		sscanf_s(line, "%c %d %d %d %d", &c1, 1, &a1, &a2, &a3, &a4);
-		if (c1 == 'L')
-		{
-			shapes.push_back(new Line(a1, a2, a3, a4));
+		try {
+			shapelist->add_shape(line);
 		}
-		if (c1 == 'C')
-		{
-			shapes.push_back(new Circle(a1, a2, a3));
-		}
-		if (c1 == 'S')
-		{
-			shapes.push_back(new Segment(a1, a2, a3, a4));
-		}
-		if (c1 == 'R')
-		{
-			shapes.push_back(new Radial(a1, a2, a3, a4));
+		catch (const char* msg) {
+			cerr << msg << endl;
+			printf("请选择 1：退出程序 2：删除该行信息并继续\n");
+			gets_s(line);
+			sscanf_s(line, "%d", &a);
+			if (a == 1) {
+				exit(1);
+			}
+			else {
+				i--;
+			}
 		}
 	}
+	shapes = shapelist->get_shapelist();
 	printf("%zd", count(shapes));
 	fclose(stdin);
 	fclose(stdout);

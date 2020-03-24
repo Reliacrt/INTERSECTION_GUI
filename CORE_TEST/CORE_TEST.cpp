@@ -187,5 +187,66 @@ namespace CORETEST
 
 			Assert::AreEqual(r1->intersect(none).count, 0);
 		}
+
+		TEST_METHOD(TestMethod8)
+		{
+			ShapeList* shapelist = new ShapeList();
+			try {
+				shapelist->add_shape("E 1 1 1");
+			}
+			catch (const char* msg) {
+				Assert::AreEqual(msg, "1:Input char does not conform to four formats");
+			}
+			try {
+				shapelist->add_shape("C 1 1");
+			}
+			catch (const char* msg) {
+				Assert::AreEqual(msg, "2:Fewer inputs");
+			}
+			try {
+				shapelist->add_shape("C 1 1 001");
+			}
+			catch (const char* msg) {
+				Assert::AreEqual(msg, "3:Leading 0");
+			}
+			try {
+				shapelist->add_shape("C 1 1 10000000");
+			}
+			catch (const char* msg) {
+				Assert::AreEqual(msg, "4:The input number does not meet the requirements");
+			}
+			try {
+				shapelist->add_shape("C 1 1 1 1");
+			}
+			catch (const char* msg) {
+				Assert::AreEqual(msg, "5:More inputs");
+			}
+			try {
+				shapelist->add_shape("L 1 1 1 1");
+			}
+			catch (const char* msg) {
+				Assert::AreEqual(msg, "6:Two point superposition");
+			}
+			try {
+				shapelist->add_shape("C 1 1 0");
+			}
+			catch (const char* msg) {
+				Assert::AreEqual(msg, "7:Circle radius is 0");
+			}
+			try {
+				shapelist->add_shape("C 1 1 1"); 
+				shapelist->add_shape("C 1 1 1");
+			}
+			catch (const char* msg) {
+				Assert::AreEqual(msg, "8:Infinite intersections");
+			}
+			try {
+				shapelist->delete_shape("C 1 1 1");
+				shapelist->delete_shape("C 1 1 1");
+			}
+			catch (const char* msg) {
+				Assert::AreEqual(msg, "9:Deleted element is empty");
+			}
+		}
 	};
 }
